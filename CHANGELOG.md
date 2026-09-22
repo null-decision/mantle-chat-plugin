@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 — Skill packaging
+
+- Make each skill usable as a separate upload, with its Mantle connection declared.
+- Remove links that depend on files outside the skill folder.
+- Match error guidance to the safe messages returned by the service.
+- Record the successful public-repository installs in Claude Code and Codex.
+
 ## 0.3.0 — Cross-client preview
 
 - Add Claude and Codex plugin manifests that share the two existing skills.

@@ -36,7 +36,9 @@ PUBLIC_FILES = frozenset({
     "mcp.json",
     "scripts/validate_plugin.py",
     "skills/edit-mantle-agent/SKILL.md",
+    "skills/edit-mantle-agent/agents/openai.yaml",
     "skills/use-mantle/SKILL.md",
+    "skills/use-mantle/agents/openai.yaml",
     "tests/validate_plugin_test.py",
 })
 
@@ -186,7 +188,11 @@ def validate(root):
         require(not (root / alternate).exists(), f"Unexpected alternate discovery file: {alternate}")
 
     skills_root = package_path(root, "skills/")
-    expected_skills = {"use-mantle", "edit-mantle-agent"}
+    skill_interfaces = {
+        "use-mantle": ("Use Mantle Chat", "Find, organize, and save work in Mantle Chat"),
+        "edit-mantle-agent": ("Edit a Mantle agent draft", "Prepare and review changes to a Mantle agent draft"),
+    }
+    expected_skills = set(skill_interfaces)
     require({path.name for path in skills_root.iterdir()} == expected_skills,
             "Expected exactly the two reviewed skill directories")
     for name in sorted(expected_skills):
@@ -201,16 +207,34 @@ def validate(root):
         require(bool(re.search(r"^  \S.+$", header, re.M)), "Missing skill description text")
         require(re.findall(r"^(\w+):", header, re.M) == ["name", "description"],
                 "Unexpected skill metadata")
+        # A closed dependency block keeps standalone uploads URL-only without
+        # adding a permissive YAML loader or another packaging dependency.
+        dependency = package_path(root, f"skills/{name}/agents/openai.yaml").read_text(encoding="utf-8")
+        display_name, short_description = skill_interfaces[name]
+        require(dependency == (
+            'interface:\n'
+            f'  display_name: "{display_name}"\n'
+            f'  short_description: "{short_description}"\n\n'
+            'dependencies:\n'
+            '  tools:\n'
+            '    - type: "mcp"\n'
+            '      value: "mantle-chat"\n'
+            '      description: "Work with your Mantle Chat workspace"\n'
+            '      transport: "streamable_http"\n'
+            '      url: "https://api.mantle.chat/mcp"\n'
+        ), "Skill dependency must contain only the reviewed Mantle connection")
 
     # Verify local Markdown destinations (external URLs and intra-page anchors are out of scope).
     markdown_files = [root / name for name in ("README.md", "SECURITY.md", "CONTRIBUTING.md", "CHANGELOG.md")]
     markdown_files += list((root / "docs").glob("*.md"))
+    markdown_files += list(skills_root.glob("*/SKILL.md"))
     for path in markdown_files:
+        boundary = path.parent if path.is_relative_to(skills_root) else root
         for link in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
             if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", link) or link.startswith("#"):
                 continue
             destination = path.parent / link.split("#", 1)[0]
-            require(destination.resolve().is_relative_to(root) and destination.exists(),
+            require(destination.resolve().is_relative_to(boundary) and destination.exists(),
                     f"Broken or escaping local link in {path.relative_to(root)}")
 
 
