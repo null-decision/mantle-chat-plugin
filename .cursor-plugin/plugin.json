@@ -1,0 +1,26 @@
+{
+  "name": "mantle-chat",
+  "version": "0.2.0",
+  "description": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
+  "author": {
+    "name": "Mantle Chat",
+    "email": "support@mantle.chat"
+  },
+  "homepage": "https://mantle.chat",
+  "repository": "https://github.com/null-decision/mantle-chat-plugin",
+  "license": "MIT",
+  "keywords": [
+    "mantle",
+    "mantle-chat",
+    "workspaces",
+    "folders",
+    "canvases",
+    "agents",
+    "mcp",
+    "ai-collaboration",
+    "tasks"
+  ],
+  "logo": "assets/logo.svg",
+  "skills": "skills/",
+  "mcpServers": "mcp.json"
+}
