@@ -35,7 +35,16 @@ Connect and complete the Mantle sign-in. Custom connectors and plugin installati
 
 ## Codex
 
-To connect the tools from the CLI:
+The plugin adds the Mantle tools and both skills. After this package version is available on the repository's default branch, install it from Mantle's marketplace:
+
+```sh
+codex plugin marketplace add null-decision/mantle-chat-plugin
+codex plugin add mantle-chat@mantle-chat
+```
+
+Start a new Codex session to load the plugin and complete browser sign-in when prompted. This installs from Mantle's repository; it does not mean the plugin is listed or endorsed in OpenAI's directory.
+
+If you only want the tools, use a direct MCP connection instead:
 
 ```sh
 codex mcp add mantle-chat --url https://api.mantle.chat/mcp
@@ -44,7 +53,7 @@ codex mcp login mantle-chat
 
 Complete the browser sign-in, then start a new Codex session. Your organization may control which connections are allowed.
 
-The repository also includes a Codex plugin manifest that bundles the same connection and both skills. Its compatibility layout keeps the Cursor connection unchanged. A direct MCP connection adds tools; it does not install the two skills. The public OpenAI directory installation will become available after review and publication. See [Codex MCP setup](https://developers.openai.com/codex/mcp).
+A direct MCP connection does not install the two skills. Choose one installation method to avoid duplicate Mantle connections. The public OpenAI directory installation will become available after review and publication. See [Codex MCP setup](https://developers.openai.com/codex/mcp).
 
 ## ChatGPT
 

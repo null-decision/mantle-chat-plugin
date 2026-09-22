@@ -24,6 +24,12 @@ claude plugin validate .claude-plugin/marketplace.json --strict
 
 From the package directory, run `claude --plugin-dir .`. Inspect `/mcp` and the two namespaced skills before signing in. This does not install the package into the public directory. Test a normal marketplace installation separately before claiming that install path works.
 
+## Package installation checks
+
+Version 0.3.0 was installed from a GitHub review branch using Claude Code 2.1.259 and Codex CLI 0.153.0. Both clients recognized the package and its shared HTTP connection. These checks cover installation, not sign-in or real workspace actions. Repeat the default-branch install after release and complete the account tests below before claiming compatibility.
+
+OpenCode 1.18.27 accepted the V1 configuration and reported that Mantle needs authentication. OpenCode V2 still needs runtime testing.
+
 ## Other clients
 
 Follow [Choose your assistant](clients.md). Keep a separate result for each client and version; do not count a successful Cursor connection as proof that another client works. Test the actual OpenCode version that matches each example. Check both OAuth consent and the resulting Mantle account, then test token refresh, reconnect, and revocation.
