@@ -9,7 +9,7 @@
       "name": "mantle-chat",
       "source": "./",
       "description": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
-      "version": "0.3.0"
+      "version": "0.3.1"
     }
   ],
   "description": "Mantle Chat tools and skills for your workspace."

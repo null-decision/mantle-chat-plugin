@@ -12,7 +12,7 @@ Use [Mantle Chat on Cursor Directory](https://cursor.directory/plugins/mantle-ch
 
 ## Claude Code
 
-The repository includes a Claude plugin with the connection and both skills. After this package version is available on the repository's default branch, add the Mantle marketplace and install the plugin:
+The repository includes a Claude plugin with the connection and both skills. Add the Mantle marketplace and install the plugin:
 
 ```text
 /plugin marketplace add null-decision/mantle-chat-plugin
@@ -35,7 +35,7 @@ Connect and complete the Mantle sign-in. Custom connectors and plugin installati
 
 ## Codex
 
-The plugin adds the Mantle tools and both skills. After this package version is available on the repository's default branch, install it from Mantle's marketplace:
+The plugin adds the Mantle tools and both skills. Install it from Mantle's marketplace:
 
 ```sh
 codex plugin marketplace add null-decision/mantle-chat-plugin

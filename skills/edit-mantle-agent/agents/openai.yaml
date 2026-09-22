@@ -1,0 +1,11 @@
+interface:
+  display_name: "Edit a Mantle agent draft"
+  short_description: "Prepare and review changes to a Mantle agent draft"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mantle-chat"
+      description: "Work with your Mantle Chat workspace"
+      transport: "streamable_http"
+      url: "https://api.mantle.chat/mcp"

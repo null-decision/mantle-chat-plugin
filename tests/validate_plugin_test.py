@@ -77,6 +77,30 @@ class PluginValidationTests(unittest.TestCase):
         path.write_text(path.read_text().replace("name: use-mantle", "name: unrelated"))
         self.assert_rejected()
 
+    def test_standalone_skill_cannot_depend_on_outside_files(self):
+        with (self.root / "skills/use-mantle/SKILL.md").open("a") as output:
+            output.write("\n[Outside](../../docs/tools.md)\n")
+        self.assert_rejected()
+
+    def test_missing_skill_resource_is_rejected(self):
+        with (self.root / "skills/use-mantle/SKILL.md").open("a") as output:
+            output.write("\n[Missing](references/missing.md)\n")
+        self.assert_rejected()
+
+    def test_skill_dependency_cannot_redirect_or_add_credentials(self):
+        for name in ("use-mantle", "edit-mantle-agent"):
+            path = self.root / f"skills/{name}/agents/openai.yaml"
+            original = path.read_text()
+            for altered in (
+                original.replace("https://api.mantle.chat/mcp", "https://example.invalid/mcp"),
+                original + '      headers: {Authorization: "Bearer EXAMPLE_ONLY"}\n',
+                original + '    - type: "mcp"\n      value: "unreviewed-server"\n',
+            ):
+                with self.subTest(skill=name):
+                    path.write_text(altered)
+                    self.assert_rejected()
+                    path.write_text(original)
+
     def test_broken_documentation_link_is_rejected(self):
         with (self.root / "README.md").open("a") as output:
             output.write("\n[Missing](docs/missing.md)\n")

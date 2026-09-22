@@ -26,7 +26,7 @@ From the package directory, run `claude --plugin-dir .`. Inspect `/mcp` and the 
 
 ## Package installation checks
 
-Version 0.3.0 was installed from a GitHub review branch using Claude Code 2.1.259 and Codex CLI 0.153.0. Both clients recognized the package and its shared HTTP connection. These checks cover installation, not sign-in or real workspace actions. Repeat the default-branch install after release and complete the account tests below before claiming compatibility.
+Version 0.3.0 was installed from the public default branch using Claude Code 2.1.259 and Codex CLI 0.153.0. Both clients recognized the package and its shared HTTP connection. These checks cover installation, not sign-in or real workspace actions. Complete the account tests below before claiming compatibility.
 
 OpenCode 1.18.27 accepted the V1 configuration and reported that Mantle needs authentication. OpenCode V2 still needs runtime testing.
 
