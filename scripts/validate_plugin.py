@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Validate this repository's intentionally URL-only Cursor plugin contract.
+"""Validate this repository's intentionally URL-only plugin contracts.
 
-Offline, standard-library only. Not a general Cursor schema or secret scanner.
+Offline, standard-library only. Not a general client schema or secret scanner.
 """
 
 import json
@@ -11,7 +11,11 @@ from pathlib import Path, PurePosixPath
 
 
 PUBLIC_FILES = frozenset({
+    ".claude-plugin/marketplace.json",
+    ".claude-plugin/plugin.json",
+    ".codex-plugin/plugin.json",
     ".cursor-plugin/plugin.json",
+    ".mcp.json",
     ".github/workflows/validate.yml",
     ".gitignore",
     "CHANGELOG.md",
@@ -21,11 +25,14 @@ PUBLIC_FILES = frozenset({
     "SECURITY.md",
     "assets/logo-256.png",
     "assets/logo.svg",
+    "docs/clients.md",
     "docs/connecting.md",
     "docs/grok-bot-template.md",
     "docs/privacy.md",
     "docs/testing.md",
     "docs/tools.md",
+    "examples/opencode-v1.json",
+    "examples/opencode-v2.json",
     "mcp.json",
     "scripts/validate_plugin.py",
     "skills/edit-mantle-agent/SKILL.md",
@@ -118,9 +125,64 @@ def validate(root):
     mcp = read_json(root, "mcp.json")
     require(mcp == {"mcpServers": {"mantle-chat": {"url": "https://api.mantle.chat/mcp"}}},
             "MCP must contain exactly one production HTTPS URL; no credentials or commands")
+    shared_mcp = read_json(root, ".mcp.json")
+    require(shared_mcp == {"mcpServers": {"mantle-chat": {
+        "type": "http", "url": "https://api.mantle.chat/mcp"}}},
+        "Claude/Codex MCP must contain only the public HTTP connection")
+
+    metadata_fields = {"name", "version", "description", "author", "homepage", "repository", "license", "keywords"}
+    for client in ("claude", "codex"):
+        adapter = read_json(root, f".{client}-plugin/plugin.json")
+        adapter_fields = metadata_fields | {"skills", "mcpServers"}
+        if client == "codex":
+            adapter_fields |= {"interface"}
+        require(isinstance(adapter, dict) and set(adapter) == adapter_fields,
+                f"Unexpected {client} manifest fields")
+        require(all(adapter[field] == manifest[field] for field in metadata_fields),
+                f"{client} identity, version, and metadata must match Cursor")
+        require(adapter["skills"] == "./skills/" and adapter["mcpServers"] == "./.mcp.json",
+                f"{client} must use the reviewed shared skills and connection")
+        if client == "codex":
+            interface = adapter["interface"]
+            required_interface = {"displayName", "shortDescription", "longDescription", "developerName",
+                                  "category", "capabilities", "websiteURL", "privacyPolicyURL",
+                                  "termsOfServiceURL", "defaultPrompt", "brandColor", "composerIcon", "logo", "logoDark"}
+            require(isinstance(interface, dict) and set(interface) == required_interface,
+                    "Unexpected Codex presentation metadata")
+            require(interface["displayName"] == "Mantle Chat" and interface["developerName"] == "Mantle Chat",
+                    "Unexpected Codex publisher")
+            require(interface["category"] == "Productivity" and interface["capabilities"] == ["Read", "Write"],
+                    "Review changes to Codex capabilities")
+            for field, url in {"websiteURL": "https://mantle.chat", "privacyPolicyURL": "https://mantle.chat/privacy",
+                               "termsOfServiceURL": "https://mantle.chat/terms"}.items():
+                require(interface[field] == url, "Unexpected Codex public URL")
+            for field in ("shortDescription", "longDescription"):
+                require(isinstance(interface[field], str) and interface[field].strip(), "Missing Codex description")
+            prompts = interface["defaultPrompt"]
+            require(isinstance(prompts, list) and 1 <= len(prompts) <= 3 and
+                    all(isinstance(prompt, str) and 1 <= len(prompt) <= 128 for prompt in prompts),
+                    "Codex needs one to three short starter prompts")
+            require(isinstance(interface["brandColor"], str) and
+                    re.fullmatch(r"#[0-9A-Fa-f]{6}", interface["brandColor"]), "Invalid brand color")
+            for field in ("composerIcon", "logo", "logoDark"):
+                require(interface[field] == "./assets/logo-256.png", "Use the reviewed PNG logo")
+                require(package_path(root, interface[field]).is_file(), "Missing Codex logo")
+
+    marketplace = read_json(root, ".claude-plugin/marketplace.json")
+    require(marketplace == {"name": "mantle-chat", "description": "Mantle Chat tools and skills for your workspace.",
+        "owner": manifest["author"], "plugins": [{
+        "name": "mantle-chat", "source": "./", "description": manifest["description"], "version": manifest["version"]}]},
+        "Claude marketplace must point only to this package and release")
+
+    opencode_server = {"mantle-chat": {"type": "remote", "url": "https://api.mantle.chat/mcp"}}
+    for version, servers in ((1, opencode_server), (2, {"servers": opencode_server})):
+        require(read_json(root, f"examples/opencode-v{version}.json") == {
+            "$schema": "https://opencode.ai/config.json", "mcp": servers},
+            f"OpenCode {version} example must use its own format and only the public endpoint")
+
     for directory in ("hooks", "commands", "agents", "rules"):
         require(not (root / directory).exists(), f"Unexpected executable/instruction surface: {directory}")
-    for alternate in ("plugin.json", ".mcp.json", ".cursor-plugin/marketplace.json"):
+    for alternate in ("plugin.json", ".cursor-plugin/marketplace.json"):
         require(not (root / alternate).exists(), f"Unexpected alternate discovery file: {alternate}")
 
     skills_root = package_path(root, "skills/")

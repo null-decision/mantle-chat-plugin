@@ -90,6 +90,75 @@ class PluginValidationTests(unittest.TestCase):
         (self.root / "assets/recording.txt").write_text("An unreviewed attachment.")
         self.assert_rejected()
 
+    def test_adapter_version_mismatch_is_rejected(self):
+        for client in ("claude", "codex"):
+            with self.subTest(client=client):
+                path = self.root / f".{client}-plugin/plugin.json"
+                original = path.read_text()
+                self.rewrite(path.relative_to(self.root), lambda data: data.update(version="9.9.9"))
+                self.assert_rejected()
+                path.write_text(original)
+
+    def test_adapter_cannot_load_another_connection_or_skill_path(self):
+        for client in ("claude", "codex"):
+            for field in ("skills", "mcpServers"):
+                with self.subTest(client=client, field=field):
+                    path = self.root / f".{client}-plugin/plugin.json"
+                    original = path.read_text()
+                    self.rewrite(path.relative_to(self.root), lambda data: data.update({field: "../outside"}))
+                    self.assert_rejected()
+                    path.write_text(original)
+
+    def test_shared_mcp_rejects_credentials_and_commands(self):
+        path = self.root / ".mcp.json"
+        original = path.read_text()
+        for extra in ({"headers": {"Authorization": "Bearer EXAMPLE_ONLY"}}, {"command": "sh"},
+                      {"url": "https://example.invalid/mcp"}):
+            with self.subTest(extra=extra):
+                self.rewrite(".mcp.json", lambda data: data["mcpServers"]["mantle-chat"].update(extra))
+                self.assert_rejected()
+                path.write_text(original)
+
+    def test_claude_marketplace_cannot_redirect_installation(self):
+        self.rewrite(".claude-plugin/marketplace.json", lambda data: data["plugins"][0].update(
+            source={"source": "url", "url": "https://example.invalid/plugin.git"}))
+        self.assert_rejected()
+
+    def test_codex_cannot_add_hooks_or_apps(self):
+        path = self.root / ".codex-plugin/plugin.json"
+        original = path.read_text()
+        for field in ("hooks", "apps"):
+            with self.subTest(field=field):
+                self.rewrite(path.relative_to(self.root), lambda data: data.update({field: "./extra.json"}))
+                self.assert_rejected()
+                path.write_text(original)
+
+    def test_codex_cannot_load_external_assets(self):
+        self.rewrite(".codex-plugin/plugin.json", lambda data: data["interface"].update(
+            logo="https://example.invalid/logo.png"))
+        self.assert_rejected()
+
+    def test_opencode_examples_reject_credentials_and_extra_plugins(self):
+        for version in (1, 2):
+            path = self.root / f"examples/opencode-v{version}.json"
+            original = path.read_text()
+            with self.subTest(version=version, change="headers"):
+                data = json.loads(original)
+                servers = data["mcp"] if version == 1 else data["mcp"]["servers"]
+                servers["mantle-chat"]["headers"] = {"Authorization": "Bearer EXAMPLE_ONLY"}
+                path.write_text(json.dumps(data))
+                self.assert_rejected()
+                path.write_text(original)
+            with self.subTest(version=version, change="plugin"):
+                self.rewrite(path.relative_to(self.root), lambda data: data.update(plugin=["unreviewed-package"]))
+                self.assert_rejected()
+                path.write_text(original)
+
+    def test_opencode_versions_are_not_interchangeable(self):
+        (self.root / "examples/opencode-v2.json").write_text(
+            (self.root / "examples/opencode-v1.json").read_text())
+        self.assert_rejected()
+
 
 if __name__ == "__main__":
     unittest.main()

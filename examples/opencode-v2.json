@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "mantle-chat": {
+        "type": "remote",
+        "url": "https://api.mantle.chat/mcp"
+      }
+    }
+  }
+}

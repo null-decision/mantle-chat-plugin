@@ -4,6 +4,8 @@ You need a Mantle account, access to a workspace, and permission to install plug
 
 The community preview is available on [Cursor Directory](https://cursor.directory/plugins/mantle-chat). The official marketplace listing is not available yet. Grok Bot setup is still being tested.
 
+For Claude, Codex, ChatGPT, or OpenCode, start with [Choose your assistant](clients.md). The account selection and troubleshooting advice below applies to all clients.
+
 ## Connect through Cursor Directory
 
 1. Open [Mantle Chat on Cursor Directory](https://cursor.directory/plugins/mantle-chat).

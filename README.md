@@ -1,10 +1,10 @@
 <p align="center"><img src="assets/logo-256.png" alt="Mantle Chat" width="80" height="80" /></p>
 
-# Mantle Chat for Cursor and Grok Bot
+# Mantle Chat for AI assistants
 
 Ask your AI assistant to find things in [Mantle Chat](https://mantle.chat), organize your workspace, save writing in a new canvas, and get help from your saved agents.
 
-**Preview:** find the connection and skills on [Cursor Directory](https://cursor.directory/plugins/mantle-chat), or [connect Mantle in Cursor manually](docs/connecting.md#optional-connect-mcp-tools-in-cursor-manually). The official marketplace listing is not available yet, and Grok Bot setup is still being tested. Available features depend on your account permissions.
+Connect from Cursor, or try the preview setup for Claude, Codex, ChatGPT, and OpenCode. [Choose your assistant](docs/clients.md). Official directory listings are not available yet. The new client setups and Grok Bot are still being tested; available features depend on your account permissions.
 
 ## What you can do
 
@@ -29,8 +29,8 @@ Try asking:
 
 ## Connect your account
 
-1. Open [Mantle Chat on Cursor Directory](https://cursor.directory/plugins/mantle-chat) and choose **Add to Cursor**. This adds the Mantle connection; the **Skills** tab provides the two optional instruction files.
-2. Choose **Connect** or **Authorize** in Cursor, then sign in to Mantle in your browser.
+1. Follow the [setup for your assistant](docs/clients.md). Cursor users can start with **Add to Cursor** on [Cursor Directory](https://cursor.directory/plugins/mantle-chat).
+2. Choose **Connect** or **Authorize**, then sign in to Mantle in your browser.
 3. Ask your assistant to list your workspaces and choose the one to use.
 
 You need a Mantle account with access to that workspace. You never need to paste passwords or API keys into the conversation. See [connecting and troubleshooting](docs/connecting.md) for setup options.
@@ -46,6 +46,7 @@ The plugin can add text when creating a canvas, but cannot rewrite an existing c
 ## Help
 
 - [Connecting and troubleshooting](docs/connecting.md)
+- [Setup for Claude, Codex, ChatGPT, and OpenCode](docs/clients.md)
 - [Tool reference](docs/tools.md)
 - [Learn about Mantle Chat](https://docs.mantle.chat)
 - [Example Grok Bot instructions](docs/grok-bot-template.md)
