@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mantle-chat": {
+      "type": "http",
+      "url": "https://api.mantle.chat/mcp"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "mantle-chat",
+  "version": "0.3.0",
+  "description": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
+  "author": {
+    "name": "Mantle Chat",
+    "email": "support@mantle.chat"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Mantle Chat",
+    "shortDescription": "Organize your Mantle workspace",
+    "longDescription": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
+    "developerName": "Mantle Chat",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://mantle.chat",
+    "privacyPolicyURL": "https://mantle.chat/privacy",
+    "termsOfServiceURL": "https://mantle.chat/terms",
+    "defaultPrompt": [
+      "Find my work in Mantle Chat.",
+      "Save a short poem in a new Mantle canvas.",
+      "Ask my saved Mantle agent for help."
+    ],
+    "brandColor": "#7860F5",
+    "composerIcon": "./assets/logo-256.png",
+    "logo": "./assets/logo-256.png",
+    "logoDark": "./assets/logo-256.png"
+  },
+  "mcpServers": "./.mcp.json",
+  "homepage": "https://mantle.chat",
+  "repository": "https://github.com/null-decision/mantle-chat-plugin",
+  "license": "MIT",
+  "keywords": [
+    "mantle",
+    "mantle-chat",
+    "workspaces",
+    "folders",
+    "canvases",
+    "agents",
+    "mcp",
+    "ai-collaboration",
+    "tasks"
+  ]
+}

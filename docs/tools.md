@@ -70,4 +70,4 @@ After agreement, pass the returned `changeSetId` as **`change_set_id`** to the a
 
 ## Errors
 
-Tool failures expose `error.code`, `error.message`, and `error.request_id`, with optional `resolve_url` and `retry_after`. HTTP authorization and rate-limit failures can also carry `WWW-Authenticate` and `Retry-After`. Share redacted codes/request IDs for support. Avoid raw payloads and arbitrary links. Validate review URLs against the configured Mantle frontend origin before presenting them.
+Tool failures include a safe error code and message, with a next step or retry delay when available. HTTP responses carry an `X-Request-Id` header for support and may include `WWW-Authenticate` or `Retry-After`. Share only the error code and request ID when contacting support. Avoid raw payloads and arbitrary links. Validate review URLs against the configured Mantle frontend origin before presenting them.

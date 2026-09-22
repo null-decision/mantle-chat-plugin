@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 — Cross-client preview
+
+- Add Claude and Codex plugin manifests that share the two existing skills.
+- Add a Mantle-owned Claude marketplace for direct installation.
+- Add separate OpenCode 1.x and 2.x connection examples.
+- Explain preview setup for Claude, Codex, ChatGPT, and OpenCode without claiming directory approval or completed live testing.
+- Validate all package adapters against the same public endpoint and release version.
+
 ## 0.2.0 — Preview
 
 - Document workspace and folder management, content reads, saved-agent calls, and confirmation in the connected assistant.
