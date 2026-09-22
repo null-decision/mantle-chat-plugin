@@ -4,6 +4,7 @@
 
 - Document workspace and folder management, content reads, saved-agent calls, and confirmation in the connected assistant.
 - Clearer connection instructions and examples.
+- Community setup through Cursor Directory, including both assistant skills.
 - Save plain-text writing in a new canvas, with examples for poems and notes.
 - Explain account selection and the separate plugin and Grok Bot template setup.
 - More reliable handling of agent draft changes and conflicts.

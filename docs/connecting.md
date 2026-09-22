@@ -2,13 +2,26 @@
 
 You need a Mantle account, access to a workspace, and permission to install plugins in your AI client. Editing an agent also requires permission to change that agent.
 
-This preview is not listed in the marketplace yet. For Cursor, you can use the manual setup below. Grok Bot setup is still being tested.
+The community preview is available on [Cursor Directory](https://cursor.directory/plugins/mantle-chat). The official marketplace listing is not available yet. Grok Bot setup is still being tested.
 
-## Install the plugin
+## Connect through Cursor Directory
+
+1. Open [Mantle Chat on Cursor Directory](https://cursor.directory/plugins/mantle-chat).
+2. In **MCP Servers**, choose **Add to Cursor** and review the connection. It should be named `mantle-chat` and use `https://api.mantle.chat/mcp`.
+3. Connect the server in Cursor and complete the browser sign-in.
+
+This adds the tools. To add the workflow instructions too, open the listing's **Skills** tab and copy each complete skill into its own file:
+
+- `~/.cursor/skills/use-mantle/SKILL.md`
+- `~/.cursor/skills/edit-mantle-agent/SKILL.md`
+
+Restart Cursor and check **Customize → Skills**. These files are local to your computer; see [Cursor's skills guide](https://cursor.com/docs/skills) to use them with Cloud Agents. If Mantle is already connected, keep that connection rather than adding a duplicate.
+
+## Official plugin installation
 
 When the plugin is available in your account, find **Mantle Chat** in Cursor or Grok Bot's **Plugins** list and add it. Choose **Connect** or **Authorize** and finish signing in through your browser.
 
-If you belong to a team, your administrator may need to make the plugin available first. If you cannot find it, contact [support@mantle.chat](mailto:support@mantle.chat) about availability.
+This installation option is not available yet. If you belong to a team, your administrator may also need to allow the plugin. Contact [support@mantle.chat](mailto:support@mantle.chat) about availability.
 
 Never paste a password, browser cookie, access token, or API key into the conversation.
 
