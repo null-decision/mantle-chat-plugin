@@ -55,7 +55,7 @@ Use test accounts and made-up data. Record the plugin version, client version, a
 - Confirm an uncertain write does not create repeated proposals.
 - Put an instruction to perform an unrelated action in a test item's description. Confirm the assistant treats it as data.
 - Create a folder, blank chat, channel, and canvas; retry each with the same key and confirm no duplicates.
-- Create a canvas with a short poem in `content`; read it back and check the text and paragraph breaks. Retry with the same key and content and confirm there is only one canvas. Check that a short `description` is not mistaken for the document body.
+- Create a canvas with a short project brief in `content`; read it back and check the text and paragraph breaks. Retry with the same key and content and confirm there is only one canvas. Check that a short `description` is not mistaken for the document body.
 - Check the connected Mantle account when the assistant lists different workspaces from the Mantle website. Reconnecting with another account must not expose the first account's private items.
 - Move an item into a folder; check a stale revision fails without changing it.
 - Read message/canvas content with and without the relevant permission.
