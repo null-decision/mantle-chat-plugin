@@ -10,7 +10,7 @@ Connect from Cursor, or try the preview setup for Claude, Codex, ChatGPT, and Op
 
 - **Find your work.** Browse workspaces, folders, chats, channels, canvases, agents, and tasks.
 - **Ask an agent.** Send a prompt to a saved Mantle agent, read its answer, or cancel the request.
-- **Save your writing.** Put a poem, meeting notes, or a draft into a new canvas. A canvas is a document in your workspace.
+- **Save your writing.** Save meeting notes, a project brief, or a draft in a new canvas. A canvas is a document in your workspace.
 - **Read and share updates.** Read recent messages or canvas content when enabled, and send a plain-text message to a channel.
 - **Keep things organized.** Create folders, blank chats, channels, and canvases. Rename items, archive or restore them, and move them into folders.
 - **Manage your workspace.** Change its name or icon, delete items, and update workspace access settings using your assistant’s confirmation controls.
@@ -21,7 +21,7 @@ Try asking:
 
 > “Create a Planning folder and move this channel into it.”
 >
-> “Write a short poem and save it in a new canvas.”
+> “Summarize this conversation and save it in a new Mantle canvas.”
 >
 > “Ask my Research agent to summarize this question.”
 >

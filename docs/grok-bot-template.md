@@ -57,7 +57,7 @@ recipient's own authorized account and select its own workspace.
 
 - “Show me the agents in my Mantle workspace.”
 - “Create a Planning folder for this workspace.”
-- “Write a short poem and save it in a new canvas.”
+- “Summarize this conversation and save it in a new Mantle canvas.”
 - “Ask my Research agent to help with this question.”
 - “Which of this task's recent runs failed?”
 - “Prepare a draft rename for this agent and show it to me before applying.”
