@@ -22,7 +22,7 @@
     "termsOfServiceURL": "https://mantle.chat/terms",
     "defaultPrompt": [
       "Find my work in Mantle Chat.",
-      "Save a short poem in a new Mantle canvas.",
+      "Summarize this conversation and save it in a new Mantle canvas.",
       "Ask my saved Mantle agent for help."
     ],
     "brandColor": "#7860F5",
