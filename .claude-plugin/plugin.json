@@ -1,6 +1,6 @@
 {
   "name": "mantle-chat",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
   "author": {
     "name": "Mantle Chat",
@@ -8,6 +8,10 @@
   },
   "homepage": "https://mantle.chat",
   "repository": "https://github.com/null-decision/mantle-chat-plugin",
+  "privacyPolicyUrl": "https://mantle.chat/privacy",
+  "supportUrl": "https://mantle.chat/contact",
+  "documentationUrl": "https://github.com/null-decision/mantle-chat-plugin/blob/main/docs/clients.md",
+  "termsOfServiceUrl": "https://mantle.chat/terms",
   "license": "MIT",
   "keywords": [
     "mantle",

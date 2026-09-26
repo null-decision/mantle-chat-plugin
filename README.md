@@ -49,6 +49,7 @@ The plugin can add text when creating a canvas, but cannot rewrite an existing c
 - [Setup for Claude, Codex, ChatGPT, and OpenCode](docs/clients.md)
 - [Tool reference](docs/tools.md)
 - [Learn about Mantle Chat](https://docs.mantle.chat)
+- [Privacy policy](https://mantle.chat/privacy) · [Contact support](https://mantle.chat/contact)
 - [Example Grok Bot instructions](docs/grok-bot-template.md)
 - [Contributing](CONTRIBUTING.md) · [Report a security issue](SECURITY.md)
 
