@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2 — Claude directory links
+
+- Give the Claude listing direct links to setup instructions, support, privacy, and service terms.
+- Make the privacy policy and support links easier to find in the README.
+- Keep the same tools, permissions, and sign-in flow.
+
 ## 0.3.1 — Skill packaging
 
 - Make each skill usable as a separate upload, with its Mantle connection declared.

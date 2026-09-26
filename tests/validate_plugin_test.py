@@ -148,6 +148,16 @@ class PluginValidationTests(unittest.TestCase):
             source={"source": "url", "url": "https://example.invalid/plugin.git"}))
         self.assert_rejected()
 
+    def test_claude_listing_links_cannot_redirect_or_embed_credentials(self):
+        path = self.root / ".claude-plugin/plugin.json"
+        original = path.read_text()
+        for field in ("privacyPolicyUrl", "supportUrl", "documentationUrl", "termsOfServiceUrl"):
+            for url in ("https://mantle.chat.evil.example/privacy", "https://mantle.chat/privacy?key=EXAMPLE_ONLY"):
+                with self.subTest(field=field, url=url):
+                    self.rewrite(path.relative_to(self.root), lambda data: data.update({field: url}))
+                    self.assert_rejected()
+                    path.write_text(original)
+
     def test_codex_cannot_add_hooks_or_apps(self):
         path = self.root / ".codex-plugin/plugin.json"
         original = path.read_text()

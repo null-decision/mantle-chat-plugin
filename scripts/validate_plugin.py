@@ -133,17 +133,28 @@ def validate(root):
         "Claude/Codex MCP must contain only the public HTTP connection")
 
     metadata_fields = {"name", "version", "description", "author", "homepage", "repository", "license", "keywords"}
+    claude_listing_urls = {
+        "privacyPolicyUrl": "https://mantle.chat/privacy",
+        "supportUrl": "https://mantle.chat/contact",
+        "documentationUrl": "https://github.com/null-decision/mantle-chat-plugin/blob/main/docs/clients.md",
+        "termsOfServiceUrl": "https://mantle.chat/terms",
+    }
     for client in ("claude", "codex"):
         adapter = read_json(root, f".{client}-plugin/plugin.json")
         adapter_fields = metadata_fields | {"skills", "mcpServers"}
         if client == "codex":
             adapter_fields |= {"interface"}
+        else:
+            adapter_fields |= claude_listing_urls.keys()
         require(isinstance(adapter, dict) and set(adapter) == adapter_fields,
                 f"Unexpected {client} manifest fields")
         require(all(adapter[field] == manifest[field] for field in metadata_fields),
                 f"{client} identity, version, and metadata must match Cursor")
         require(adapter["skills"] == "./skills/" and adapter["mcpServers"] == "./.mcp.json",
                 f"{client} must use the reviewed shared skills and connection")
+        if client == "claude":
+            require(all(adapter[field] == url for field, url in claude_listing_urls.items()),
+                    "Claude listing links must use the reviewed public URLs")
         if client == "codex":
             interface = adapter["interface"]
             required_interface = {"displayName", "shortDescription", "longDescription", "developerName",
