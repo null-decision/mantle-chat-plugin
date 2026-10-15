@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.3 — OpenAI upload package and clearer data handling
+
+- Build a ZIP containing the skills, icons, and explicit OAuth MCP configuration for OpenAI’s submission portal.
+- Preserve an existing OpenAI package name when updating a listing created with the previous form.
+- Explain channel posting, saved-agent model processing, and prompt and answer retention.
+
+
 ## 0.3.2 — Claude directory links
 
 - Give the Claude listing direct links to setup instructions, support, privacy, and service terms.

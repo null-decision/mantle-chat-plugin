@@ -90,3 +90,21 @@ Grok Bot setup is still being tested. A community Cursor listing does not automa
 ## If something goes wrong
 
 See [connection troubleshooting](connecting.md#troubleshooting), the [tool reference](tools.md), and [how data is handled](privacy.md). Contact [support@mantle.chat](mailto:support@mantle.chat) with your client version and a redacted description of the problem.
+
+## Prepare an OpenAI directory upload
+
+Maintainers can build the submission ZIP with:
+
+```sh
+python3 scripts/build_openai_package.py /tmp/mantle-chat-openai.zip
+```
+
+For an existing listing, use the exact **Package name** shown in OpenAI’s portal:
+
+```sh
+python3 scripts/build_openai_package.py /tmp/mantle-chat-openai.zip --package-name existing-package-name
+```
+
+Replace the placeholder with the existing name; do not create a second listing. Upload the ZIP to that plugin, inspect **Metadata & Skills** and **MCPs**, and connect the server using OAuth. The ZIP includes the public endpoint, OAuth discovery preference, both skills, and the logo. It never contains reviewer passwords or access tokens. Enter reviewer access only in OpenAI’s private **Review details** form.
+
+A draft upload runs automated checks. It does not submit for review or publish the plugin. Verify reviewer sign-in and test cases before submitting. See [OpenAI’s submission guide](https://developers.openai.com/plugins/deploy/submission).

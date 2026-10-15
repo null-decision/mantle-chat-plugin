@@ -41,7 +41,7 @@ Mantle checks your permissions for each action. Confirm permanent deletions and 
 
 Information you retrieve is shared with your AI assistant. A saved agent can use its configured tools, including tools that change connected services. Read [how your data is handled](docs/privacy.md).
 
-The plugin can add text when creating a canvas, but cannot rewrite an existing canvas. It also cannot send chat messages, move items between workspaces, manage members or billing, delete entire workspaces, or start scheduled tasks. See the [tool reference](docs/tools.md) for the full scope.
+The plugin can add text when creating a canvas, but cannot rewrite an existing canvas. It can post plain-text messages to channels you choose, as your signed-in Mantle user. It cannot send messages into individual chats, move items between workspaces, manage members or billing, delete entire workspaces, or start scheduled tasks. See the [tool reference](docs/tools.md) for the full scope.
 
 ## Help
 

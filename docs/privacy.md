@@ -12,7 +12,9 @@ Chat metadata does not include titles or snippets. Message reads omit authors, a
 
 New canvas text, requested edits, and channel messages are sent to Mantle. Completed changes remain after you disconnect the plugin. New agent instructions or tool settings may be submitted as part of an agent draft edit; publishing remains separate in Mantle.
 
-A saved agent may use its configured tools to read or change connected services. Consider those tool permissions before requesting a call. Private agent responses belong to the user and connection that created them; answer content expires after 24 hours in Mantle. That expiry does not remove copies already returned to your assistant.
+A saved agent receives the specific request you ask it to handle. That request, the agent’s instructions, and authorized knowledge needed for the answer are processed by the agent’s configured model provider, which may be a third party. Do not send unrelated conversation history. The agent may use its configured tools to read or change connected services, such as updating documents or posting messages, subject to Mantle’s tool permissions.
+
+Mantle encrypts agent-call prompts and answers. Their content expires after 24 hours and is removed by the retention cleanup; run details are scheduled for cleanup after 30 days. Private responses belong to the user and connection that created them. Expiry does not remove copies already returned to your assistant. The assistant and model providers have their own retention policies.
 
 Permanent deletions and workspace visibility or indexing changes use the connected app’s confirmation controls. There is no separate Mantle approval page. Automatic-run settings may skip client prompts; Mantle still enforces current access, operation permissions, and version checks.
 
