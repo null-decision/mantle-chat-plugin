@@ -12,9 +12,11 @@ Chat metadata does not include titles or snippets. Message reads omit authors, a
 
 New canvas text, requested edits, and channel messages are sent to Mantle. Completed changes remain after you disconnect the plugin. New agent instructions or tool settings may be submitted as part of an agent draft edit; publishing remains separate in Mantle.
 
-A saved agent may use its configured tools to read or change connected services. Consider those tool permissions before requesting a call. Private agent responses belong to the user and connection that created them; answer content expires after 24 hours in Mantle. That expiry does not remove copies already returned to your assistant.
+A saved agent receives the specific request you ask it to handle. That request, the agent’s instructions, and authorized knowledge needed for the answer are processed by the agent’s configured model provider, which may be a third party. Do not send unrelated conversation history. Connector calls accept agents with no tools or explicitly selected read-only tools. Agents with tools that can change connected services, unknown tools, or unrestricted tool selections are rejected. The restriction is checked again when a tool runs, even if it was approved previously. To ask an agent to post messages, update documents, or make other external changes, run it directly in Mantle.
 
-Permanent deletions and workspace visibility or indexing changes use the connected app’s confirmation controls. There is no separate Mantle approval page. Automatic-run settings may skip client prompts; Mantle still enforces current access, operation permissions, and version checks.
+Mantle encrypts agent-call prompts and answers. Their content expires after 24 hours and is removed by the retention cleanup; run details are scheduled for cleanup after 30 days. Private responses belong to the user and connection that created them. Expiry does not remove copies already returned to your assistant. The assistant and model providers have their own retention policies.
+
+Channel posts, permanent deletions, and workspace visibility or indexing changes require an approval card or confirmation form in the connected app. The approval shows the exact destination and message, item, or settings. Cancelling or declining leaves the item unchanged. Clients without compatible approvals cannot perform these actions. There is no separate Mantle approval page. Mantle also enforces current access, operation permissions, and version checks.
 
 ## Sign-in and privacy choices
 

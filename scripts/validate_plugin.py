@@ -35,6 +35,8 @@ PUBLIC_FILES = frozenset({
     "examples/opencode-v2.json",
     "mcp.json",
     "scripts/validate_plugin.py",
+    "scripts/build_openai_package.py",
+    "tests/build_openai_package_test.py",
     "skills/edit-mantle-agent/SKILL.md",
     "skills/edit-mantle-agent/agents/openai.yaml",
     "skills/use-mantle/SKILL.md",

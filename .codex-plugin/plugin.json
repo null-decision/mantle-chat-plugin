@@ -1,6 +1,6 @@
 {
   "name": "mantle-chat",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
   "author": {
     "name": "Mantle Chat",
@@ -10,7 +10,7 @@
   "interface": {
     "displayName": "Mantle Chat",
     "shortDescription": "Organize your Mantle workspace",
-    "longDescription": "Find information in Mantle Chat, organize folders and chats, save writing to new canvases, and ask your saved agents for help.",
+    "longDescription": "Find work in Mantle Chat and keep it organized from your AI assistant. Browse workspaces, folders, chats, channels, canvases, saved agents, and tasks. Read recent messages and canvas documents when your account has permission.\n\nCreate folders, rename items, and move them into folders. Save meeting notes or a project brief in a new canvas, which is a document in Mantle. Post plain-text updates to channels you choose; messages are sent as your signed-in Mantle user. Sending messages into individual chats is not supported.\n\nAsk a saved Mantle agent for help or prepare changes to an agent draft. Agent calls are available only in selected workspaces. Your specific request is sent to the agent's configured model provider, which may be a third party. Connector calls require agents with no tools or explicitly selected read-only tools. Agents that can post messages, update documents, or change other services must be run directly in Mantle. Mantle encrypts agent-call prompts and answers, makes their content expire after 24 hours, and schedules run details for cleanup after 30 days. Your assistant and model providers have their own retention policies.\n\nSign in with your Mantle account. Never paste passwords or API keys into a conversation. Mantle checks your access for each action. Channel posts, permanent deletions, and workspace access changes require an approval card or confirmation form showing the exact action. If your assistant does not support an approval, complete that action directly in Mantle.\n\nThe plugin cannot rewrite an existing canvas document, manage billing or members, delete an entire workspace, or start scheduled tasks.",
     "developerName": "Mantle Chat",
     "category": "Productivity",
     "capabilities": [
