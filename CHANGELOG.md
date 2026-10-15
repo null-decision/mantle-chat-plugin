@@ -5,7 +5,8 @@
 - Build a ZIP containing the skills, icons, and explicit OAuth MCP configuration for OpenAI’s submission portal.
 - Preserve an existing OpenAI package name when updating a listing created with the previous form.
 - Explain channel posting, saved-agent model processing, and prompt and answer retention.
-
+- Limit connector agent calls to agents with no tools or explicitly selected read-only tools.
+- Require a supported in-app approval card or form before deletion, workspace access changes, and channel posts.
 
 ## 0.3.2 — Claude directory links
 

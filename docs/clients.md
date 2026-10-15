@@ -87,6 +87,12 @@ See the official [V1 MCP guide](https://opencode.ai/docs/mcp-servers/), [V2 MCP 
 
 Grok Bot setup is still being tested. A community Cursor listing does not automatically install the plugin in Grok Bot. See the [Grok Bot instructions](grok-bot-template.md) for the intended workflow and current limitations.
 
+## Confirming changes
+
+Channel posting, permanent deletion, and workspace access-setting changes need an approval card or confirmation form in your assistant. Clients can show an MCP Apps card or a native form using MCP 2026-07-28 form elicitation. If your client does not support it, those actions are unavailable through the connection; you can still make them directly in Mantle. Other permitted tools remain available. A connected account alone does not prove approval support.
+
+Saved-agent calls require an agent with no tools or explicitly selected read-only tools. Agents that change other services must be run directly in Mantle.
+
 ## If something goes wrong
 
 See [connection troubleshooting](connecting.md#troubleshooting), the [tool reference](tools.md), and [how data is handled](privacy.md). Contact [support@mantle.chat](mailto:support@mantle.chat) with your client version and a redacted description of the problem.

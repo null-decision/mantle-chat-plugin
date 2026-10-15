@@ -37,9 +37,9 @@ You need a Mantle account with access to that workspace. You never need to paste
 
 ## You stay in control
 
-Mantle checks your permissions for each action. Confirm permanent deletions and workspace visibility or indexing changes in your connected assistant. There is no separate Mantle approval page. Your client’s automatic-run settings may skip confirmation prompts. Deleting a folder keeps its contents and moves them to the workspace root. Archiving a canvas turns off its public share links; restoring it does not turn them back on.
+Mantle checks your permissions for each action. Before posting a channel message, permanently deleting an item, or changing workspace visibility or indexing, your assistant must show an approval card or confirmation form. Review the exact message, item, or settings and approve it there. If your assistant cannot show an approval, use Mantle for that action. There is no separate Mantle approval page. Deleting a folder keeps its contents and moves them to the workspace root. Archiving a canvas turns off its public share links; restoring it does not turn them back on.
 
-Information you retrieve is shared with your AI assistant. A saved agent can use its configured tools, including tools that change connected services. Read [how your data is handled](docs/privacy.md).
+Information you retrieve is shared with your AI assistant. You can call saved agents with no tools or with explicitly selected read-only tools. Agents that can change connected services must be run directly in Mantle. Read [how your data is handled](docs/privacy.md).
 
 The plugin can add text when creating a canvas, but cannot rewrite an existing canvas. It can post plain-text messages to channels you choose, as your signed-in Mantle user. It cannot send messages into individual chats, move items between workspaces, manage members or billing, delete entire workspaces, or start scheduled tasks. See the [tool reference](docs/tools.md) for the full scope.
 

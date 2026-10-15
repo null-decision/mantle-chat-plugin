@@ -61,7 +61,7 @@ Use test accounts and made-up data. Record the plugin version, client version, a
 - Read message/canvas content with and without the relevant permission.
 - Send a plain-text channel message; retry it and confirm only one message exists.
 - Call a saved agent, poll its answer, and cancel another call. Confirm a different connection cannot read it.
-- Confirm deletion and workspace access changes inside the client, with the exact target/settings visible and no separate Mantle approval page. Check stale-version and permission denials, same-key retries without repeated changes, and rejection of changed arguments under the same key. Record how automatic-run settings affect prompts.
+- Confirm deletion and workspace access changes inside the client, with the exact target/settings visible and no separate Mantle approval page. Check stale-version and permission denials, same-key retries without repeated changes, and rejection of changed arguments under the same key. Also test channel-post previews, cancellation, and declined approvals. Verify unsupported clients refuse the action. Check that agents with read-only tools work and write-capable agents are rejected even if their tools were previously approved.
 - Verify a revoked connection no longer works.
 - If sharing a bot template, import it with another account and confirm the recipient must use their own connection.
 
